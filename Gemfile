@@ -9,6 +9,12 @@ group :production do
   gem 'rails_12factor'
 end
 
+# Devise
+gem 'devise'
+# Faker
+gem 'faker'
+# Figaro - env vars
+gem 'figaro', '1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use SCSS for stylesheets
