@@ -9,13 +9,28 @@
 <body>
   
   <div class="container">
-    <ul class="nav nav-tabs">
-      <li><%= link_to "Blocmarks", root_path %></li>
-      <li><%= link_to "About", about_path %></li>
-    </ul>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs">
+          <li><%= link_to "Blocmarks", root_path %></li>
+          <li><%= link_to "About", about_path %></li>
+          <div class="pull-right user-info margin-top-10 margin-right-5">
+            <% if current_user %>
+              <%= link_to "#{current_user.name}", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            <% else %>
+              <%= link_to "Sign in", new_user_session_path %> | <%= link_to "Sign up", new_user_registration_path %>
+            <% end %>
+          </div>
+        </ul>
+        
+        
+        
+      </div>
+    </div>
+  
     
     <br/>
-    
+
     <% if flash[:notice] %>
       <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -36,6 +51,7 @@
     <%= yield %>
       
   </div>
+  
 
 </body>
 </html>
