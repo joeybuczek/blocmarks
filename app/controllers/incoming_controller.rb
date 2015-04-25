@@ -5,7 +5,8 @@ class IncomingController < ApplicationController
   def create
     
     @user = User.where(email: params[:sender])
-    @user.update_attributes(name: "Received!")
+    @user.name = "Received!"
+    @user.save
     
   end
   
