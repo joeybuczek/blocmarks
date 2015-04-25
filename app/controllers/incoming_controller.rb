@@ -4,8 +4,10 @@ class IncomingController < ApplicationController
   
   def create
     
-#     @user = User.where(email: params[:sender])
-    puts params
+    @user = User.find_by_email(params[:sender])
+
+    @user.name = "Received"
+    @user.save
     
   end
   
