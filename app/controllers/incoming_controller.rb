@@ -4,11 +4,11 @@ class IncomingController < ApplicationController
   
   def create
     
-    @user = User.find_by_email(params[:sender])
+    @user = User.find_by_email(the_sender)
     if @user.nil?
       @user = User.new(
-        name: params[:from],
-        email: params[:sender],
+        name: the_name,
+        email: the_sender,
         password: "password", # assign initial password for now...
         password_confirmation: "password"
       )
@@ -19,14 +19,36 @@ class IncomingController < ApplicationController
       
     end
     
-    @topic = @user.topics.find_by_title(params[:subject])
+    @topic = @user.topics.find_by_title(the_subject)
     if @topic.nil?
-      @topic = @user.topics.build(title: params[:subject])
+      @topic = @user.topics.build(title: the_subject)
       @topic.save
     end
     
-    @bookmark = @topic.bookmarks.build(url: params["body-plain"])
-    @bookmark.save
+    if @topic.bookmarks.find_by_url(the_url).nil?
+      @bookmark = @topic.bookmarks.build(url: the_url)
+      @bookmark.save
+    end
   end
+  
+  private
+  
+  def the_sender
+    params[:sender]
+  end
+  
+  def the_name
+    params[:from]
+  end
+  
+  def the_subject
+    params[:subject]
+  end
+  
+  def the_url
+    params["body-plain"]
+  end
+  
+  
   
 end
