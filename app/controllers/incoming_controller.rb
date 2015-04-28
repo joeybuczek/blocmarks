@@ -14,6 +14,9 @@ class IncomingController < ApplicationController
       )
       @user.skip_confirmation! # skip for now...
       @user.save
+      
+      # Send email instructions to new user to change the default password
+      
     end
     
     @topic = @user.topics.find_by_title(params[:subject])
