@@ -4,6 +4,8 @@ class IncomingController < ApplicationController
   
   def create
     
+    # Why would this add bookmarks to both test users?
+    
     @user = User.find_by_email(the_sender)
     if @user.nil?
       @user = User.new(
@@ -16,7 +18,6 @@ class IncomingController < ApplicationController
       @user.save
       
       # Send email instructions to new user to change the default password
-      
     end
     
     @topic = @user.topics.find_by_title(the_subject)
@@ -26,6 +27,7 @@ class IncomingController < ApplicationController
     end
     
     if @topic.bookmarks.find_by_url(the_url).nil?
+      # Why is this creating another instance of the bookmark if it already exists?
       @bookmark = @topic.bookmarks.build(url: the_url)
       @bookmark.save
     end
@@ -48,7 +50,5 @@ class IncomingController < ApplicationController
   def the_url
     params["body-plain"]
   end
-  
-  
   
 end
