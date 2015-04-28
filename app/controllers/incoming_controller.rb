@@ -8,15 +8,14 @@ class IncomingController < ApplicationController
     
     @user = User.find_by_email(the_sender)
     if @user.nil?
-      @user = User.new(
-        name: the_name,
-        email: the_sender,
-        password: "password", # assign initial password for now...
-        password_confirmation: "password"
-      )
-      @user.skip_confirmation! # skip for now...
-      @user.save
-      
+#       @user = User.new(
+#         name: the_name,
+#         email: the_sender,
+#         password: "password", # assign initial password for now...
+#         password_confirmation: "password"
+#       )
+#       @user.skip_confirmation! # skip for now...
+#       @user.save
       # Send email instructions to new user to change the default password
     end
     
@@ -26,11 +25,14 @@ class IncomingController < ApplicationController
       @topic.save
     end
     
-    if @topic.bookmarks.find_by_url(the_url).nil?
-      # Why is this creating another instance of the bookmark if it already exists?
-      @bookmark = @topic.bookmarks.build(url: the_url)
-      @bookmark.save
-    end
+    @bookmark = @topic.bookmarks.new(url: "name: #{@user.email}, topic: #{@topic.title}, url: #{the_url}")
+    @bookmark.save
+    
+#     if @topic.bookmarks.find_by_url(the_url).nil?
+#       # Why is this creating another instance of the bookmark if it already exists?
+#       @bookmark = @topic.bookmarks.build(url: the_url)
+#       @bookmark.save
+#     end
   end
   
   private
