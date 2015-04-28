@@ -5,18 +5,18 @@ class IncomingController < ApplicationController
   def create
     
     @user = User.find_by_email(params[:sender])
-    @topic = @user.topics.find_by_title(params[:subject])
-
     if @user.nil?
       @user = User.new(
         name: params[:from],
         email: params[:sender],
-        password: "12345678" # assign initial password for now...
+        password: "password", # assign initial password for now...
+        password_confirmation: "password"
       )
       @user.skip_confirmation! # skip for now...
       @user.save
     end
     
+    @topic = @user.topics.find_by_title(params[:subject])
     if @topic.nil?
       @topic = @user.topics.build(title: params[:subject])
       @topic.save
