@@ -12,9 +12,9 @@ class IncomingController < ApplicationController
         password: "password", # assign initial password for now...
         password_confirmation: "password"
       )
-      @user.skip_confirmation! # skip for now...
+      @user.skip_confirmation! # skip for now to pass user story
       @user.save
-      # Send email instructions to new user to change the default password
+      # Email instructions to new user to change the default password would be sent here
     end
     
     @topic = @user.topics.find_by_title(the_subject)
