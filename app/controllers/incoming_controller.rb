@@ -25,8 +25,12 @@ class IncomingController < ApplicationController
       @topic.save
     end
     
-    # @test_bookmark = @topic.bookmarks.find_by_url(the_url)
-    @bookmark = @topic.bookmarks.new(url: "name: #{@user.email}, topic: #{@topic.title}, url: #{the_url}")
+#     @bookmark = @topic.bookmarks.find_by_url(the_url)
+#     if @bookmark.nil?
+#       # create new bookmark
+#     end
+#     @bookmark = @topic.bookmarks.new(url: "name: #{@user.email}, topic: #{@topic.title}, url: #{the_url}")
+    @bookmark = @topic.bookmarks.new(url: the_url.chomp)
     @bookmark.save
     
     head 200
