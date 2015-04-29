@@ -1,5 +1,19 @@
-<h1><%= @topic.title %></h1>
+<div class="row">
+  <div class="col-md-8">
+    
+    <h1 class="nudge-up-10">Bookmarks for <%= @topic.title %></h1>
 
-<% @bookmarks.each do |bookmark| %>
-  <p><%= bookmark.url %></p>
-<% end %>
+    <div class="list-group">
+      <h4 class="list-group-item list-group-item-info">&nbsp</h4>
+      <div class="list-group-item">
+        <% @bookmarks.each do |bookmark| %>
+          <p>
+            <%= link_to bookmark.url, bookmark.url, target: "_blank", class: 'margin-left-10' %>
+            <%= link_to "", bookmark, method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+</div>

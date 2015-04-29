@@ -1,14 +1,19 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8">
 
-    <h1 class="nudge-up-10">Bookmarks by Topic</h1>
+    <h1 class="nudge-up-10">Bookmarks: All by Topic</h1>
 
+    <%= form_for @topic do |f| %>
+      <%= f.text_field :title, class: 'form-control input-topic inline-block' %>
+      <%= f.submit "Add Topic", class: 'btn btn-default inline-block' %>
+    <% end %>
+    
     <% @topics.each do |topic| %>
       <div class="list-group">  
         <h4 class="list-group-item list-group-item-info">
-          <%= topic.title %>
-          <%= link_to "", topic, method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{topic.title}?" } %>
-        </h4>
+          <%= link_to topic.title, topic %>
+          <%= link_to "", topic, method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color pull-right', data: { confirm: "Are you sure you want to remove #{topic.title}?" } %>
+        </h4>            
         <div class="list-group-item">
           <% topic.bookmarks.each_with_index do |bookmark, index| %>
             <% unless index >= topic.bookmarks.count %>

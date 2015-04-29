@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   def index
     @topics = current_user.topics.all
+    @topic = Topic.new
   end
 
   def show
@@ -8,10 +9,16 @@ class TopicsController < ApplicationController
     @bookmarks = @topic.bookmarks.all
   end
   
+  def create
+    @topic = current_user.topics.build(params[:topic].permit(:title))
+    @topic.save
+    redirect_to request.referrer
+  end
+  
   def destroy
     @topic = the_topic
     @topic.destroy
-    redirect_to topics_path
+    redirect_to request.referrer
   end
   
   private
