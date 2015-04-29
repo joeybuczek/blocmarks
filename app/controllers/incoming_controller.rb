@@ -4,18 +4,16 @@ class IncomingController < ApplicationController
   
   def create
     
-    # Why would this add bookmarks to both test users?
-    
     @user = User.find_by_email(the_sender)
     if @user.nil?
-#       @user = User.new(
-#         name: the_name,
-#         email: the_sender,
-#         password: "password", # assign initial password for now...
-#         password_confirmation: "password"
-#       )
-#       @user.skip_confirmation! # skip for now...
-#       @user.save
+      @user = User.new(
+        name: the_name,
+        email: the_sender,
+        password: "password", # assign initial password for now...
+        password_confirmation: "password"
+      )
+      @user.skip_confirmation! # skip for now...
+      @user.save
       # Send email instructions to new user to change the default password
     end
     
