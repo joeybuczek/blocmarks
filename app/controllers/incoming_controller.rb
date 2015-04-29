@@ -29,11 +29,7 @@ class IncomingController < ApplicationController
     @bookmark = @topic.bookmarks.new(url: "name: #{@user.email}, topic: #{@topic.title}, url: #{the_url}")
     @bookmark.save
     
-#     if @topic.bookmarks.find_by_url(the_url).nil?
-#       # Why is this creating another instance of the bookmark if it already exists?
-#       @bookmark = @topic.bookmarks.build(url: the_url)
-#       @bookmark.save
-#     end
+    head 200
   end
   
   private
