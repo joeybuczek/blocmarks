@@ -4,7 +4,20 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find(params[:id])
+    @topic = the_topic
     @bookmarks = @topic.bookmarks.all
   end
+  
+  def destroy
+    @topic = the_topic
+    @topic.destroy
+    redirect_to topics_path
+  end
+  
+  private
+  
+  def the_topic
+    Topic.find(params[:id])
+  end
+  
 end
