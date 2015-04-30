@@ -2,6 +2,8 @@
   <div class="col-md-8">
     
     <h1 class="nudge-up-10">Bookmarks for <%= @topic.title %></h1>
+    
+    <%= link_to "Add Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-default' %>
 
     <div class="list-group">
       <h4 class="list-group-item list-group-item-info">&nbsp</h4>
@@ -9,7 +11,7 @@
         <% @bookmarks.each do |bookmark| %>
           <p>
             <%= link_to bookmark.title, bookmark.url, target: "_blank", class: 'margin-left-10' %>
-            <%= link_to "", bookmark, method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
+            <%= link_to "", [@topic, bookmark], method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
           </p>
         <% end %>
       </div>

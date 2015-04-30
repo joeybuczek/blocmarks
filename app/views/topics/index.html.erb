@@ -19,7 +19,7 @@
             <% unless index >= topic.bookmarks.count %>
               <p>
                 <%= link_to bookmark.title, bookmark.url, target: "_blank", class: 'margin-left-10' %>
-                <%= link_to "", bookmark, method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
+                <%= link_to "", [topic, bookmark], method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
               </p>
             <% end %>
           <% end %>
