@@ -1,4 +1,13 @@
 class BookmarksController < ApplicationController
+  
+  def new
+
+  end
+  
+  def create
+
+  end
+  
   def destroy
     @bookmark = Bookmark.find_by_id(params[:id])
     @bookmark.destroy
