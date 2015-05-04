@@ -10,12 +10,16 @@
       <div class="list-group-item">
         <% @bookmarks.each do |bookmark| %>
           <p>
-            <%= link_to bookmark.title, bookmark.url, target: "_blank", class: 'margin-left-10' %>
+            <%= link_to bookmark.title, bookmark.url, target: "_blank", class: 'margin-left-10 margin-right-10' %>
+            <%= link_to "", edit_topic_bookmark_path(@topic, bookmark), class: 'glyphicon glyphicon-edit remove-color' %>
             <%= link_to "", [@topic, bookmark], method: :delete, class: 'glyphicon glyphicon-remove-circle remove-color', data: { confirm: "Are you sure you want to remove #{bookmark.url}?" } %>
           </p>
         <% end %>
+        
       </div>
     </div>
+    
+    <%= link_to "Back", topics_path, class: 'margin-left-5' %>
     
   </div>
 </div>

@@ -13,11 +13,15 @@ class BookmarksController < ApplicationController
   end
   
   def edit
-    
+    @topic = Topic.find(params[:topic_id])
+    @bookmark = Bookmark.find(params[:id])
   end
   
   def update
-    
+    @topic = Topic.find(params[:topic_id])
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.update_attributes(params[:bookmark].permit(:url, :title))
+    redirect_to @topic
   end
   
   def destroy
