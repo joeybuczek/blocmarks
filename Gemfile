@@ -13,6 +13,8 @@ end
 gem 'devise'
 # Faker
 gem 'faker'
+# Pundit
+gem 'pundit'
 # Figaro - env vars
 gem 'figaro', '1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
