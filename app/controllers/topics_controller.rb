@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   def index
-    @topics = current_user.topics.all
+    @topics = Topic.all
     @topic = Topic.new
   end
 

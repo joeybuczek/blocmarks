@@ -14,8 +14,10 @@ class IncomingController < ApplicationController
       )
       @user.skip_confirmation! # skip for now to pass user story
       @user.save
-      # Email instructions to new user to change the default password would be sent here
+      # Email instructions to new user to change the default password would be sent here?
     end
+    
+    # Re-write the below to account for universal topics and also individuals' topics?
     
     @topic = @user.topics.find_by_title(the_subject)
     if @topic.nil?
