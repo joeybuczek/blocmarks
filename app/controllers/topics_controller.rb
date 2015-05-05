@@ -17,6 +17,7 @@ class TopicsController < ApplicationController
   
   def destroy
     @topic = the_topic
+    authorize @topic
     @topic.destroy
     redirect_to request.referrer
   end
