@@ -27,7 +27,7 @@ class IncomingController < ApplicationController
     
     @bookmark = @topic.bookmarks.find_by_url(the_url)
     if @bookmark.nil?
-      @bookmark = @topic.bookmarks.new(url: the_url, title: the_url)
+      @bookmark = @topic.bookmarks.new(url: the_url, title: the_url, user_id: @user.id)
       @bookmark.user = @user
       @bookmark.save
     end
