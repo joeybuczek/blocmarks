@@ -1,0 +1,7 @@
+<% if policy(Like.new).create? %>
+  <% if like = current_user.liked(bookmark) %>
+    <%= link_to "", [topic, bookmark, like], class: 'glyphicon glyphicon-thumbs-down remove-color', method: :delete %>
+  <% else %>
+    <%= link_to "", [topic, bookmark, Like.new], class: 'glyphicon glyphicon-thumbs-up remove-color', method: :post %>
+  <% end %>
+<% end %>

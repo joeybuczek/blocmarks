@@ -1,3 +1,4 @@
+<% if policy(@topic).index? %>
 <div class="row">
   <div class="col-md-8">
 
@@ -20,6 +21,7 @@
             <% unless index >= topic.bookmarks.count %>
               <p>
                 <%= link_to bookmark.title, bookmark.url, target: "_blank", class: 'margin-left-10 margin-right-10' %>
+                <%= render partial: 'likes/like', locals: { bookmark: bookmark, topic: topic } %>
               </p>
             <% end %>
           <% end %>
@@ -29,3 +31,4 @@
 
   </div>
 </div>
+<% end %>
