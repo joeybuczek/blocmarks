@@ -6,7 +6,7 @@
     <%= link_to "Add Bookmark", new_topic_bookmark_path(@topic), class: 'btn btn-default' %>
 
     <div class="list-group">
-      <h4 class="list-group-item list-group-item-info">&nbsp</h4>
+      <h4 class="list-group-item list-group-item-info remove-color"><%= @topic.title %></h4>
       <div class="list-group-item">
         <% @bookmarks.each do |bookmark| %>
           <p>
