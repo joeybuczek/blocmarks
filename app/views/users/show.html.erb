@@ -1,2 +1,78 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= current_user.name %></h1>
+
+<div class="row">
+  <div class="col-md-8">
+
+    <div class="list-group">
+      <h4 class="list-group-item list-group-item-info">My Bookmarks</h4>
+      <div class="list-group-item">
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <td class="width-25">
+                <strong class="remove-color">TOPIC</strong>
+              </td>
+              <td>
+                <strong class="remove-color"> URL</strong>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% @user_bookmarks.each do |b| %>
+              <tr>
+                <td>
+                  <%= b.topic.title %>
+                </td>
+                <td>
+                  <%= link_to b.title, b.url, target: "_blank" %>
+                </td>
+              </tr>  
+            <% end %>
+            
+          </tbody>
+        </table>
+          
+      </div>
+    </div>
+    
+    <div class="list-group">
+      <h4 class="list-group-item list-group-item-info">Bookmarks I Like</h4>
+      <div class="list-group-item">
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <td class="width-25">
+                <strong class="remove-color">TOPIC</strong>
+              </td>
+              <td>
+                <strong class="remove-color"> URL</strong>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% @liked_bookmarks.each do |b| %>
+              <tr>
+                <td>
+                  <%= b.topic.title %>
+                </td>
+                <td>
+                  <%= link_to b.title, b.url, target: "_blank" %>
+                  <%= render partial: 'likes/like', locals: { bookmark: b, topic: b.topic } %>
+                </td>
+              </tr>  
+            <% end %>
+            
+          </tbody>
+        </table>
+          
+      </div>
+    </div>    
+    
+    
+    
+  </div>
+</div>
