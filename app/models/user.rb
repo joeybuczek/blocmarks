@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :topics, dependent: :destroy
   has_many :bookmarks
   has_many :likes, dependent: :destroy
+  has_many :liked_bookmarks, through: :likes, source: :bookmark
   
 #   after_initialize :set_defaults
 
